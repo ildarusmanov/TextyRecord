@@ -5,4 +5,5 @@ Gem::Specification.new do |s|
   s.email   = 'user@example.com'
   s.summary = 'TextyRecord'
   s.files   = Dir['lib/*.rb']
+  s.add_development_dependency "rspec"
 end
