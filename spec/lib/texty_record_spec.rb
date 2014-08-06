@@ -57,4 +57,16 @@ describe TextyRecord do
   it 'should fetch all' do
     TextyRecordPage.all.length.should eq 3
   end
+
+  it 'should be new_record if not saved' do
+    TextyRecordPage.new(title: 'Test', content: 'Test').new_record?.should eq true
+  end
+
+  it 'should not be new_record if saved' do
+    TextyRecordPage.first.new_record?.should eq false
+  end
+
+  it 'should return attributes' do
+    TextyRecordPage.first.attributes.keys.should include(:id, :title, :content)
+  end
 end

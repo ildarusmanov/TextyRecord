@@ -62,7 +62,7 @@ module TextyRecord
     end
 
     def new_record?
-      @attributes.has_key? :id || @attributes[:id].nil?
+      @attributes[:id].nil?
     end
 
     def before_save
