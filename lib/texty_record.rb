@@ -1,13 +1,13 @@
 require 'json'
 
-require File.join(File.dirname(__FILE__), 'texty_record', 'query_builder')
-require File.join(File.dirname(__FILE__), 'texty_record', 'exceptions')
-require File.join(File.dirname(__FILE__), 'texty_record', 'query_parser')
-require File.join(File.dirname(__FILE__), 'texty_record', 'json_file_storage')
-require File.join(File.dirname(__FILE__), 'texty_record', 'attributes')
-require File.join(File.dirname(__FILE__), 'texty_record', 'validations')
-
 module TextyRecord
+  autoload :QueryBuilder, 'texty_record/query_builder'
+  autoload :Exceptions, 'texty_record/exceptions'
+  autoload :QueryParser, 'texty_record/query_parser'
+  autoload :JsonFileStorage, 'texty_record/json_file_storage'
+  autoload :Attributes, 'texty_record/attributes'
+  autoload :Validations, 'texty_record/validations'
+
   class Base
     extend TextyRecord::QueryBuilder
     extend TextyRecord::Validations
