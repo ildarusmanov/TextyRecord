@@ -1,49 +1,53 @@
 module TextyRecord
   module QueryBuilder
-    def query
-      @query ||= TextyRecord::QueryBuilder::Query.new(self)
-    end
-
-    def where(conditions)
-      query.where(conditions)
-    end
-
-    def limit(limit)
-      query.limit(limit)
-    end
-
-    def all
-      query.all
-    end
-
-    def first
-      query.first
-    end
-
-    def find(id)
-      query.find(id)
-    end
-
-    def update(attributes)
-      query.update(attributes)
-    end
-
-    def execute(command)
-      query.execute(command)
+    def self.included(base)
+      base.extend ClassMethods
     end
 
     module ClassMethods
-      def save
-        if before_save
-          self.class.where(id: id).update(attributes).execute(:save)
-        else
-          false
-        end
+      def query
+        @query ||= TextyRecord::QueryBuilder::Query.new(self)
       end
 
-      def destroy
-        self.class.where(id: id).execute(:destroy)
+      def where(conditions)
+        query.where(conditions)
       end
+
+      def limit(limit)
+        query.limit(limit)
+      end
+
+      def all
+        query.all
+      end
+
+      def first
+        query.first
+      end
+
+      def find(id)
+        query.find(id)
+      end
+
+      def update(attributes)
+        query.update(attributes)
+      end
+
+      def execute(command)
+        query.execute(command)
+      end
+    end
+
+    def save
+      if before_save
+        self.class.where(id: id).update(attributes).execute(:save)
+      else
+        false
+      end
+    end
+
+    def destroy
+      self.class.where(id: id).execute(:destroy)
     end
 
     class Query

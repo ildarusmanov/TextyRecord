@@ -9,12 +9,10 @@ module TextyRecord
   autoload :Validations, 'texty_record/validations'
 
   class Base
-    extend TextyRecord::QueryBuilder
-    extend TextyRecord::Validations
-    include TextyRecord::Attributes::ClassMethods
-    include TextyRecord::Validations::ClassMethods
+    include TextyRecord::QueryBuilder
+    include TextyRecord::Attributes
     include TextyRecord::Exceptions
-    include TextyRecord::QueryBuilder::ClassMethods
+    include TextyRecord::Validations
 
     add_validation :unique, :id
     add_validation :numeric, :id
