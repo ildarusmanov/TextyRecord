@@ -43,9 +43,7 @@ module TextyRecord
       end
 
       def build_from_attributes_collection(collection_attributes)
-        collection = []
-        collection_attributes.each { |attributes| collection.push build_from_attributes(attributes) }
-        collection
+        collection_attributes.map { |attributes| build_from_attributes(attributes) }
       end
 
       def storage

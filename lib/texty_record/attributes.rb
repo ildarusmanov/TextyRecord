@@ -29,8 +29,8 @@ module TextyRecord
       private
 
       def build_attribute_methods(attribute)
-        eval "def #{attribute}; @attributes[:#{attribute}]; end"
-        eval "def #{attribute}=(val); @attributes[:#{attribute}] = val; end"
+        self.class.send(:define_method, attribute) { read_attribute(attribute) }
+        self.class.send(:define_method, "#{attribute}=") { |v| write_attribute(attribute, v) }
       end
     end
   end
